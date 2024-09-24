@@ -13,9 +13,10 @@
 
 <body class="min-h-screen flex flex-col bg-gray-50">
 
+
     <div class="flex flex-col md:flex-row flex-grow">
         <!-- Sidebar Section -->
-        <aside class="w-full md:w-64 bg-white border-r border-gray-200 dark:border-gray-300 md:flex-shrink-0">
+        <aside class="md:w-64 bg-white border-r border-gray-200  dark:border-gray-300 md:flex-shrink-0">
             <div class="p-2">
                 <a href="#">
                     <img class="w-40 md:w-60 p-2" src="{{ asset('assets/front/media/logo.svg') }}" alt="Logo">
@@ -29,54 +30,60 @@
 
             <nav class="space-y-2 p-4">
                 <div class="menu-item">
-                    <a class="flex items-center gap-2.5 p-2.5 border border-transparent rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900" href="#">
+                    <a href="{{ route('dashboard') }}" class="flex items-center gap-2.5 p-2.5 border border-transparent rounded-lg hover:bg-gray-100 dark:hover:bg-gray-200">
                         <img class="w-5" src="{{ asset('assets/front/media/dashboard.png') }}" alt="Dashboard">
-                        <span class="text-sm font-semibold text-gray-700 hover:text-primary">Dashboards</span>
+                        <span class="text-xs font-semibold text-gray-700 hover:text-primary">Dashboards</span>
                     </a>
                 </div>
-
-                <div class="menu-section pt-4">
-                    <span class="text-xs font-semibold text-gray-500 uppercase px-2.5">User</span>
-                    <div class="menu-item">
-                        <a class="flex items-center gap-2.5 p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900" href="#">
-                            <img class="w-5" src="{{ asset('assets/front/media/user.png') }}" alt="User">
-                            <span class="text-sm font-semibold text-gray-600">Location</span>
-                            <div class="ml-auto flex gap-2">
-                                <img class="w-4" src="{{ asset('assets/front/media/add.png') }}" alt="Add">
-                                <img class="w-4" src="{{ asset('assets/front/media/minus.png') }}" alt="Minus">
+                    <div>
+                        <span class="text-xs  font-semibold text-gray-500 uppercase px-2.5">User</span>
+                    </div>
+                    <div class="menu-section pt-2">
+                        <div class="menu-item">
+                            <a id="locationToggle" class="flex items-center gap-2.5 p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-200 cursor-pointer">
+                                <img class="w-5" src="{{ asset('assets/front/media/user.png') }}" alt="User">
+                                <span class="text-xs font-semibold text-gray-600">Location</span>
+                                <div class="ml-auto flex gap-2">
+                                    <img id="addIcon" class="w-4" src="{{ asset('assets/front/media/add.png') }}" alt="Add">
+                                    <img id="minusIcon" class="w-4 hidden" src="{{ asset('assets/front/media/minus.png') }}" alt="Minus">
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Hidden menu items for City and States -->
+                        <div id="locationItems" class="hidden border-l ml-4 border-gray-100">
+                            <div class="menu-item">
+                                <a class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-200" href="#">
+                                    <span class="menu-bullet w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                    <span class="text-xs font-medium text-gray-700 hover:text-primary">City</span>
+                                </a>
                             </div>
-                        </a>
+                            <div class="menu-item">
+                                <a href="{{ route('states.index') }}" class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-200">
+                                    <span class="menu-bullet w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                    <span class="text-xs font-medium text-gray-700 hover:text-primary">States</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    {{-- <div class="menu-item">
-                        <a class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-900" href="#">
-                            <span class="menu-bullet w-1.5 h-1.5 bg-primary rounded-full"></span>
-                            <span class="text-sm font-medium text-gray-700 hover:text-primary">City</span>
-                        </a>
-                    </div>
-                    <div class="menu-item">
-                        <a class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-900" href="#">
-                            <span class="text-sm font-medium text-gray-700">States</span>
-                        </a>
-                    </div> --}}
-                </div>
+                    
 
                 <div class="menu-section">
                     <div class="menu-item">
-                        <a class="flex items-center gap-2.5 p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900" href="#">
+                        <a class="flex items-center gap-2.5 p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-200" href="#">
                             <img class="w-5" src="{{ asset('assets/front/media/project-manager.png') }}" alt="User">
-                            <span class="text-sm font-semibold text-gray-600">User Management</span>
+                            <span class="text-xs font-semibold text-gray-600">User Management</span>
                         </a>
                     </div>
                     <div class="menu-item">
-                        <a class="flex items-center gap-2.5 p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900" href="#">
+                        <a class="flex items-center gap-2.5 p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-200" href="#">
                             <img class="w-5" src="{{ asset('assets/front/media/office-building.png') }}" alt="User">
-                            <span class="text-sm font-semibold text-gray-600">Company</span>
+                            <span class="text-xs font-semibold text-gray-600">Company</span>
                         </a>
                     </div>
                     <div class="menu-item">
-                        <a class="flex items-center gap-2.5 p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900" href="#">
+                        <a class="flex items-center gap-2.5 p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-200" href="#">
                             <img class="w-5" src="{{ asset('assets/front/media/cityscape.png') }}" alt="User">
-                            <span class="text-sm font-semibold text-gray-600">TC City URLs</span>
+                            <span class="text-xs font-semibold text-gray-600">TC City URLs</span>
                         </a>
                     </div>
                 </div>
@@ -94,48 +101,75 @@
 
                 <div class="flex items-center gap-4">
                     <div class="relative">
-                        <button class="flex items-center">
-                            <img class="w-8 h-8 rounded-full" src="{{ asset('assets/front/media/profile.png') }}" alt="Profile">
+                        <button id="profileButton" class="flex items-center focus:outline-none">
+                            <img class="w-9 h-9 border-2 border-green-600 rounded-full" src="{{ asset('assets/front/media/profile.png') }}" alt="Profile">
                         </button>
-                        <div class="absolute right-0 z-20 hidden bg-white shadow-lg w-48 mt-2 rounded-md">
-                            <div class="p-2">
-                                <span class="block text-gray-800 font-semibold">Name</span>
-                                <span class="block text-gray-500">email@example.com</span>
+                        <div id="dropdownMenu" class="absolute border bg-gray-50 p-3 right-0 z-20 hidden shadow-lg w-64 mt-2 rounded-md">
+                            <div class="py-2 p-2 flex flex-row">
+                                <div>
+                                    <img class="w-8 h-8 border-2 border-green-600 rounded-full" src="{{ asset('assets/front/media/profile.png') }}" alt="Profile">
+                                </div>
+                                <div class="pl-4">
+                                    <span class="block text-gray-800 text-sm font-semibold">Name</span>
+                                <span class="block text-gray-500 font-semibold text-sm">email@example.com</span>
+                                </div>
+                                <div class="p-1">
+                                    <button class="border text-sm border-blue-500 bg-blue-50 rounded-md w-10">
+                                        Pro
+                                    </button>
+                                </div>
                             </div>
-                            <div class="border-t">
-                                <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Public Profile</a>
-                                <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Dark Mode</a>
-                                <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Logout</a>
+                            <div class="border-t ">
+                                <div class="flex flex-row border-b py-3 border-gray-200">
+                                    <div class="px-4 py-2">
+                                        <img class="w-6 h-6 rounded-full" src="{{ asset('assets/front/media/User.png') }}" alt="Profile">
+                                    </div>
+                                    <a href="#" class="block px-2 py-2 font-semibold text-sm text-gray-600 hover:bg-gray-100">Public Profile</a>
+                                </div>
+                                <div class="flex flex-row py-2">
+                                    <div class="px-4 py-2">
+                                        <img class="w-6 h-6 rounded-full" src="{{ asset('assets/front/media/moon_light.png') }}" alt="Profile">
+                                    </div>
+                                    <a href="#" class="block px-2 py-2 font-semibold text-sm text-gray-600 hover:bg-gray-100">Dark Mode</a>
+                                </div>
+                                <div class="items-center justify-center flex">
+                                    <button class="bg-gray-100 rounded-md border m-3">
+                                        <a href="#" class="block w-52 px-2 py-1 text-gray-600 text-sm hover:shadow-lg">Log out</a>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                
             </header>
 
-            <main class="flex-grow p-6">
+            <main class="flex-grow p-6 bg-white">
                 @yield('content')
             </main>
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const profileButton = document.querySelector('.menu-toggle');
-            const dropdownMenu = document.querySelector('.menu-dropdown');
-    
-            // Toggle dropdown menu visibility
-            profileButton.addEventListener('click', () => {
-                dropdownMenu.classList.toggle('hidden');
-            });
-    
-            // Close dropdown if clicked outside
-            document.addEventListener('click', (event) => {
-                if (!profileButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    dropdownMenu.classList.add('hidden');
-                }
-            });
-        });
+        document.getElementById('profileButton').addEventListener('click', function () {
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    dropdownMenu.classList.toggle('hidden'); // Toggle the 'hidden' class
+});
+
+
+document.getElementById('locationToggle').addEventListener('click', function () {
+    const locationItems = document.getElementById('locationItems');
+    const addIcon = document.getElementById('addIcon');
+    const minusIcon = document.getElementById('minusIcon');
+
+    // Toggle visibility of City and States items
+    locationItems.classList.toggle('hidden');
+
+    // Toggle between add and minus icons
+    addIcon.classList.toggle('hidden');
+    minusIcon.classList.toggle('hidden');
+});
     </script>
-    
 </body>
 
 </html>

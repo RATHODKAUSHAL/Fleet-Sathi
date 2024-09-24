@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="flex items-center gap-2.5">
-        <a class="btn btn-sm bg-gray-200 text-gray-700 hover:bg-gray-300 py-1 px-4 rounded" 
+        <a class="btn btn-sm bg-gray-100 border border-gray-200 text-sm text-gray-700 hover:shadow-md  py-1 px-4 rounded-md" 
            href="html/demo1/public-profile/profiles/default.html">
           View Profile
         </a>

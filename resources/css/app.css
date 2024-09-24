@@ -202,3 +202,277 @@
 .menu-default .menu-item.disabled > .menu-link {
     opacity: 0.5;
 }
+
+.container-fixed {
+    flex-grow: 1;
+    padding-left: 1.5rem /* 24px */;
+    padding-right: 1.5rem /* 24px */;
+}
+@media (min-width: 1280px) {
+    .container-fixed {
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 2.5rem /* 40px */;
+        padding-right: 2.5rem /* 40px */;
+        max-width: 1280px;
+    }
+}
+@layer components {
+    .btn-primary {
+      @apply py-2 px-4 text-xs bg-blue-500 text-white font-semibold rounded-md shadow-md hover:shadow-blue-400 hover:bg-blue-700 focus:outline-none focus:ring focus:ring-violet-400 focus:ring-opacity-75;
+    }
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--tw-card-box-shadow);
+    background-color: var(--tw-card-background-color);
+    border-radius: 0.75rem /* 12px */;
+    border: var(--tw-card-border);
+}
+
+.card-grid .card-header, .card-grid .card-footer {
+    padding-left: 1.25rem /* 20px */;
+    padding-right: 1.25rem /* 20px */;
+}
+.card-grid .card-header, .card-grid .card-footer {
+    padding-left: 1.25rem /* 20px */;
+    padding-right: 1.25rem /* 20px */;
+}
+.card-grid .card-body {
+    padding: 0;
+}
+.card-grid .card-body table {
+    border: 0;
+}
+.card-grid .card-body table th:first-child, .card-grid .card-body table td:first-child {
+    padding-left: 1.25rem /* 20px */;
+}
+.card-grid .card-body table th:first-child, .card-grid .card-body table td:first-child {
+    padding-left: 1.25rem /* 20px */;
+}
+.card-grid .card-body table th:last-child, .card-grid .card-body table td:last-child {
+    padding-right: 1.25rem /* 20px */;
+}
+.card-grid .card-body table th:last-child, .card-grid .card-body table td:last-child {
+    padding-right: 1.25rem /* 20px */;
+}
+
+.card-header {
+    display: flex;
+    min-height: 56px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: var(--tw-card-border);
+    padding-left: 1.875rem /* 30px */;
+    padding-right: 1.875rem /* 30px */;
+    padding-top: 0.75rem /* 12px */;
+    padding-bottom: 0.75rem /* 12px */;
+}
+.card-header + .card-body table th:first-child, .card-header + .card-body table th:last-child, .card-header + .card-table table th:first-child, .card-header + .card-table table th:last-child {
+    border-radius: 0;
+}
+.card-header + .card-body table th:first-child, .card-header + .card-body table th:last-child, .card-header + .card-table table th:first-child, .card-header + .card-table table th:last-child {
+    border-radius: 0;
+}
+.card-header + .card-body table th:first-child, .card-header + .card-body table th:last-child, .card-header + .card-table table th:first-child, .card-header + .card-table table th:last-child {
+    border-radius: 0;
+}
+.card-header + .card-body table th:first-child, .card-header + .card-body table th:last-child, .card-header + .card-table table th:first-child, .card-header + .card-table table th:last-child {
+    border-radius: 0;
+}
+.card-grid .card-header, .card-grid .card-footer {
+    padding-left: 1.25rem /* 20px */;
+    padding-right: 1.25rem /* 20px */;
+}
+
+.card-title {
+    font-size: 1rem /* 16px */;
+    line-height: 1.5rem /* 24px */;
+    font-weight: 600;
+    color: var(--tw-gray-900);
+}
+
+.card-body {
+    flex-grow: 1;
+    padding-left: 1.875rem /* 30px */;
+    padding-right: 1.875rem /* 30px */;
+    padding-top: 1.25rem /* 20px */;
+    padding-bottom: 1.25rem /* 20px */;
+}
+.card-header + .card-body table th:first-child, .card-header + .card-body table th:last-child, .card-header + .card-table table th:first-child, .card-header + .card-table table th:last-child {
+    border-radius: 0;
+}
+.card-header + .card-body table th:first-child, .card-header + .card-body table th:last-child, .card-header + .card-table table th:first-child, .card-header + .card-table table th:last-child {
+    border-radius: 0;
+}
+.card-grid .card-body {
+    padding: 0;
+}
+.card-grid .card-body table {
+    border: 0;
+}
+.card-grid .card-body table th:first-child, .card-grid .card-body table td:first-child {
+    padding-left: 1.25rem /* 20px */;
+}
+.card-grid .card-body table th:first-child, .card-grid .card-body table td:first-child {
+    padding-left: 1.25rem /* 20px */;
+}
+.card-grid .card-body table th:last-child, .card-grid .card-body table td:last-child {
+    padding-right: 1.25rem /* 20px */;
+}
+.card-grid .card-body table th:last-child, .card-grid .card-body table td:last-child {
+    padding-right: 1.25rem /* 20px */;
+}
+.sort {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem /* 5.6px */;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: var(--tw-card-border);
+    padding-left: 1.875rem /* 30px */;
+    padding-right: 1.875rem /* 30px */;
+    padding-top: 0.75rem /* 12px */;
+    padding-bottom: 0.75rem /* 12px */;
+}
+.card-group + .card-footer {
+    border-top: 0;
+}
+.card-grid .card-header, .card-grid .card-footer {
+    padding-left: 1.25rem /* 20px */;
+    padding-right: 1.25rem /* 20px */;
+}
+
+.btn-light {
+    color: var(--tw-gray-700);
+    border-color: var(--tw-gray-300);
+    background-color: var(--tw-light);
+}
+.btn-light i {
+    color: var(--tw-gray-500);
+}
+.btn-light:hover, .btn-light:focus, .btn-light:active, .btn-light.active {
+    border-color: var(--tw-gray-300);
+    background-color: var(--tw-light-active);
+    box-shadow: var(--tw-default-box-shadow);
+    color: var(--tw-gray-800);
+}
+.btn-light:hover, .btn-light:focus, .btn-light:active, .btn-light.active {
+    border-color: var(--tw-gray-300);
+    background-color: var(--tw-light-active);
+    box-shadow: var(--tw-default-box-shadow);
+    color: var(--tw-gray-800);
+}
+.btn-light:hover, .btn-light:focus, .btn-light:active, .btn-light.active {
+    border-color: var(--tw-gray-300);
+    background-color: var(--tw-light-active);
+    box-shadow: var(--tw-default-box-shadow);
+    color: var(--tw-gray-800);
+}
+.btn-light:hover, .btn-light:focus, .btn-light:active, .btn-light.active {
+    border-color: var(--tw-gray-300);
+    background-color: var(--tw-light-active);
+    box-shadow: var(--tw-default-box-shadow);
+    color: var(--tw-gray-800);
+}
+.btn-light:hover i, .btn-light:focus i, .btn-light:active i, .btn-light.active i {
+    color: var(--tw-gray-600);
+}
+.btn-light:hover i, .btn-light:focus i, .btn-light:active i, .btn-light.active i {
+    color: var(--tw-gray-600);
+}
+.btn-light:hover i, .btn-light:focus i, .btn-light:active i, .btn-light.active i {
+    color: var(--tw-gray-600);
+}
+.btn-light:hover i, .btn-light:focus i, .btn-light:active i, .btn-light.active i {
+    color: var(--tw-gray-600);
+}
+.btn-light[disabled], .btn-light.disabled {
+    opacity: 1;
+    color: var(--tw-gray-500);
+    border-color: var(--tw-gray-200);
+    background-color: var(--tw-light);
+}
+.btn-light[disabled], .btn-light.disabled {
+    opacity: 1;
+    color: var(--tw-gray-500);
+    border-color: var(--tw-gray-200);
+    background-color: var(--tw-light);
+}
+.btn-light[disabled] i, .btn-light.disabled i {
+    color: var(--tw-gray-400);
+}
+.btn-light[disabled] i, .btn-light.disabled i {
+    color: var(--tw-gray-400);
+}
+.btn-light.btn-clear {
+    border-color: transparent;
+    background-color: transparent;
+    color: var(--tw-gray-700);
+}
+.btn-light.btn-clear i {
+    color: var(--tw-gray-600);
+}
+.btn-light.btn-clear:hover, .btn-light.btn-clear:focus, .btn-light.btn-clear:active, .btn-light.btn-clear.active {
+    background-color: var(--tw-gray-200);
+    border-color: transparent;
+    box-shadow: none;
+    color: var(--tw-gray-800);
+}
+.btn-light.btn-clear:hover, .btn-light.btn-clear:focus, .btn-light.btn-clear:active, .btn-light.btn-clear.active {
+    background-color: var(--tw-gray-200);
+    border-color: transparent;
+    box-shadow: none;
+    color: var(--tw-gray-800);
+}
+.btn-light.btn-clear:hover, .btn-light.btn-clear:focus, .btn-light.btn-clear:active, .btn-light.btn-clear.active {
+    background-color: var(--tw-gray-200);
+    border-color: transparent;
+    box-shadow: none;
+    color: var(--tw-gray-800);
+}
+.btn-light.btn-clear:hover, .btn-light.btn-clear:focus, .btn-light.btn-clear:active, .btn-light.btn-clear.active {
+    background-color: var(--tw-gray-200);
+    border-color: transparent;
+    box-shadow: none;
+    color: var(--tw-gray-800);
+}
+.btn-light.btn-clear:hover i, .btn-light.btn-clear:focus i, .btn-light.btn-clear:active i, .btn-light.btn-clear.active i {
+    color: var(--tw-gray-700);
+}
+.btn-light.btn-clear:hover i, .btn-light.btn-clear:focus i, .btn-light.btn-clear:active i, .btn-light.btn-clear.active i {
+    color: var(--tw-gray-700);
+}
+.btn-light.btn-clear:hover i, .btn-light.btn-clear:focus i, .btn-light.btn-clear:active i, .btn-light.btn-clear.active i {
+    color: var(--tw-gray-700);
+}
+.btn-light.btn-clear:hover i, .btn-light.btn-clear:focus i, .btn-light.btn-clear:active i, .btn-light.btn-clear.active i {
+    color: var(--tw-gray-700);
+}
+.btn-light.btn-clear[disabled], .btn-light.btn-clear.disabled {
+    opacity: 1;
+    color: var(--tw-gray-500);
+    border-color: transparent;
+    background-color: transparent;
+}
+.btn-light.btn-clear[disabled], .btn-light.btn-clear.disabled {
+    opacity: 1;
+    color: var(--tw-gray-500);
+    border-color: transparent;
+    background-color: transparent;
+}
+.btn-light.btn-clear[disabled] i, .btn-light.btn-clear.disabled i {
+    color: var(--tw-gray-400);
+}
+.btn-light.btn-clear[disabled] i, .btn-light.btn-clear.disabled i {
+    color: var(--tw-gray-400);
+}
+
