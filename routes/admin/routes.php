@@ -8,3 +8,5 @@ Route::get('dashboard',[DashboardController::class, 'index'])->name('dashboard')
 
 
 Route::resource('states',AdminStateController::class);
+
+

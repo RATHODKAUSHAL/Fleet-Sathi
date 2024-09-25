@@ -14,7 +14,7 @@
             </div>
             <div class="flex items-center gap-3">
                 <a class="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                   href="{{ route('states.create') }}">Create State</a>
+                    href="{{ route('states.create') }}">Create State</a>
             </div>
         </div>
 
@@ -53,15 +53,37 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Rows will be dynamically populated here -->
+                                    @if (count($states) == 0)
+                                        <tr>
+                                            <td colspan="9" class="text-center">There is no record available.</td>
+                                        </tr>
+                                    @else
+                                        @foreach ($states as $key=>$state)
+                                            <tr>
+                                                <td  class="px-4 py-2 border-b  text-left w-5">
+                                                    {{ $state->id }}
+                                                </td>
+                                                <td class="px-4 py-2  text-left border  min-w-[150px]">
+                                                    {{ $state->state_name }}
+                                                </td>
+                                                <td class="px-4 py-2  text-left border min-w-[150px]">
+                                                    {{ $state->state_abbreviation }}
+                                                </td>
+                                                <td class="px-4 py-2  w-4 border text-left">
+                                                    <button><img class="w-5"  src="{{ asset('assets/front/media/dots.png') }}" alt=""></button>
+                                                </td>
+                                                
+                                            </tr>
+                                        @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
                         <div class="flex justify-between items-center p-4 text-gray-600 text-sm">
                             <div class="flex items-center gap-2">
                                 <span>Show</span>
-                                <select class="w-16 px-2 py-1 border border-gray-300 rounded focus:ring focus:ring-indigo-500">
-                                    <!-- Options can be populated here -->
+                                <select data-datatable-size="true"
+                                    class="w-16 px-2 py-1 border border-gray-300 rounded focus:ring focus:ring-indigo-500">
                                 </select>
                                 <span>Per Page</span>
                             </div>

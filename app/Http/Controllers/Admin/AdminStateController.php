@@ -13,7 +13,10 @@ class AdminStateController extends Controller
      */
     public function index()
     {
-        return view('admin.states.index');
+        // dd("hello");
+        $states = StateMaster::get();
+        return view('admin.states.index', compact("states"));
+        
     }
 
     /**
@@ -22,7 +25,7 @@ class AdminStateController extends Controller
     public function create()
     {
         //
-        return view('admin.states.craete');
+        return view('admin.states.create');
     }
 
     /**
@@ -37,8 +40,11 @@ class AdminStateController extends Controller
         $State->state_abbreviation = $request->state_abbreviation; 
         $State->save();
 
-        return redirect()->route('admin.states.index');
+        return redirect()->route('states.index');
     }
+
+    
+    
 
     /**
      * Display the specified resource.
@@ -46,6 +52,8 @@ class AdminStateController extends Controller
     public function show(string $id)
     {
         //
+        // dd('ss');
+        
     }
 
     /**
