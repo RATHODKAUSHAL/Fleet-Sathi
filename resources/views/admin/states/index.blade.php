@@ -1,5 +1,10 @@
 @extends('admin.layouts.default')
 
+@section('page-script')
+    <script src="{{ asset('assets/admin/js/custom/states.js') }}"></script>
+@endsection
+
+
 @section('content')
     <div class="container mx-auto px-4">
         <!-- Header Section -->
@@ -29,10 +34,10 @@
                 <div class="p-4">
                     <div data-datatable="true" data-datatable-page-size="20" data-datatable-state-save="true">
                         <div class="overflow-x-auto">
-                            <table class="min-w-full table-auto border text-gray-600  text-sm">
+                            <table class="min-w-full table-fixed border text-gray-600  text-sm">
                                 <thead class="bg-gray-100">
                                     <tr>
-                                        <th class="px-4 py-2  text-left w-5">
+                                        <th class="px-4 py-2 border text-left w-5">
                                             <span class="cursor-pointer">
                                                 #
                                             </span>
@@ -60,19 +65,41 @@
                                     @else
                                         @foreach ($states as $key=>$state)
                                             <tr>
-                                                <td  class="px-4 py-2 border-b  text-left w-5">
-                                                    {{ $state->id }}
+                                                <td  class="px-7 py-4 border-b font-medium  text-left w-5">
+                                                    {{ $key 
+                                                    + 1 }}
                                                 </td>
-                                                <td class="px-4 py-2  text-left border  min-w-[150px]">
+                                                <td class="px-7 py-4  text-left font-medium border  min-w-[150px]">
                                                     {{ $state->state_name }}
                                                 </td>
-                                                <td class="px-4 py-2  text-left border min-w-[150px]">
+                                                <td class="px-7 py-4 text-left font-medium border min-w-[150px]">
                                                     {{ $state->state_abbreviation }}
                                                 </td>
-                                                <td class="px-4 py-2  w-4 border text-left">
-                                                    <button><img class="w-5"  src="{{ asset('assets/front/media/dots.png') }}" alt=""></button>
+                                                <td class="px-4 py-2 w-4 border text-left">
+                                                    <div class="flex items-center gap-4 ">   
+                                                        <div class="relative">
+                                                            <button class="flex items-center focus:outline-none" onclick="toggleActions(event)">
+                                                                <img class="w-5" src="{{ asset('assets/front/media/dots.png') }}" alt="">
+                                                            </button>
+                                                            <!-- Action buttons -->
+                                                            <div class="absolute w-32 right-10 hidden bg-white shadow-lg rounded-md action-buttons">
+                                                                <div class="flex flex-row p-3">
+                                                                    <img class="w-5 hover:text-blue-600" src="{{ asset('assets/front/media/Edit.png') }}" alt="">
+                                                                <button><a href="{{ route('states.edit',$state->id) }}" class="px-4 py-2 font-medium text-sm text-gray-800 ">Edit</a></button>
+                                                                </div>
+                                                                <form action="{{ route('states.destroy',$state->id) }}" method="POST" class="block">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <div class="flex flex-row p-3">
+                                                                        <img class="w-4 h-5" src="{{ asset('assets/front/media/bin.png') }}" alt="">
+                                                                        <button type="submit" class="w-full font-medium text-left px-4  text-sm text-gray-800">Remove</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
-                                                
+
                                             </tr>
                                         @endforeach
                                     @endif
@@ -101,4 +128,6 @@
             </div>
         </div>
     </div>
+
+
 @endsection

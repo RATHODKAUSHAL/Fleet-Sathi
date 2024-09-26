@@ -114,7 +114,7 @@
                                 <span class="block text-gray-500 font-semibold text-sm">email@example.com</span>
                                 </div>
                                 <div class="p-1">
-                                    <button class="border text-sm border-blue-500 bg-blue-50 rounded-md w-10">
+                                    <button class="border text-[10px] border-blue-500 text-blue-700 bg-blue-100 rounded-md w-8">
                                         Pro
                                     </button>
                                 </div>
@@ -170,6 +170,7 @@ document.getElementById('locationToggle').addEventListener('click', function () 
     minusIcon.classList.toggle('hidden');
 });
     </script>
+      @yield('page-script')
 </body>
 
 </html>

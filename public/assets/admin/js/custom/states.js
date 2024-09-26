@@ -1,29 +1,22 @@
-const apiUrl = document.querySelector('#state_table').getAttribute('data-url');
-const element = document.querySelector('#state_table');
-const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-const dataTableOptions = {
-	apiEndpoint: apiUrl,
-    requestHeaders: {
-        'X-CSRF-TOKEN': csrfToken,
-    },
-    requestMethod: "POST",
-	pageSize: 5,
-    columns: {
-        id: {
-			title: '#',
-		},
-		state_name: {
-			title: 'State Name',
-		},
-		state_abbr: {
-			title: 'State Abbreviation',
-		},
-        actions: {
-			render: (item, data, context) => {
-				return item;
-			},
-		},
+function toggleActions(event) {
+    // Prevent the click event from propagating to the button
+    event.stopPropagation();
+    
+    // Find the closest action buttons container
+    const actionButtons = event.target.closest('.relative').querySelector('.action-buttons');
+    
+    // Toggle visibility of the action buttons
+    if (actionButtons) {
+        actionButtons.classList.toggle('hidden');
     }
-};
-const dataTable = new KTDataTable(element, dataTableOptions);
+}
+
+// Optionally, hide the buttons when clicking outside
+document.addEventListener('click', function(event) {
+    const actionButtons = document.querySelectorAll('.action-buttons');
+    actionButtons.forEach(button => {
+        if (!button.contains(event.target) && !button.previousElementSibling.contains(event.target)) {
+            button.classList.add('hidden');
+        }
+    });
+});

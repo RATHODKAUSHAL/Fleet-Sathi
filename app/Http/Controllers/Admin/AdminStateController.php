@@ -34,11 +34,11 @@ class AdminStateController extends Controller
     public function store(Request $request)
     {
         //
-        $State = new StateMaster();
-        $State->state_name = $request->state_name;
+        $states = new StateMaster();
+        $states->state_name = $request->state_name;
         // $State->state_name_alias = $request->state_name_alias; 
-        $State->state_abbreviation = $request->state_abbreviation; 
-        $State->save();
+        $states->state_abbreviation = $request->state_abbreviation; 
+        $states->save();
 
         return redirect()->route('states.index');
     }
@@ -51,7 +51,7 @@ class AdminStateController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
         // dd('ss');
         
     }
@@ -61,22 +61,56 @@ class AdminStateController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $states = StateMaster::findOrFail($id);
+        return view('admin.states.create',[
+            'states' => $states,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request, $id)
+{
+    $states = StateMaster::find($id);
+    
+    if (!$states) {
+        return redirect()->route('states.index')->with('error', 'State not found.');
     }
+
+    $request->validate([
+        'state_name' => 'required|string|max:255',
+        'state_abbreviation' => 'required|string|max:10',
+    ]);
+
+    $states->state_name = $request->state_name;
+    $states->state_abbreviation = $request->state_abbreviation;
+    $states->save();
+
+    return redirect()->route('states.index')->with('success', 'State updated successfully.');
+}
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request,string $id)
     {
-        //
+        // Find the state by its ID
+        // $states = StateMaster::find($id);
+        //     if (!$states) {
+        //     return redirect()->route('states.index')->with('error', 'State not found.');
+        // }
+        // try {
+        //     $states->delete($id);
+        //     return redirect()->route('states.index')->with('success', 'State deleted successfully.');
+        // } catch (\Exception $e) {
+        //     return redirect()->route('states.index')->with('error', 'Failed to delete the state. Please try again.');
+        // }
+
+        $states = StateMaster::find($id);
+        $states->delete($request->all());
+        return redirect()->route('states.index')->with("vehicle deleted successfully");
     }
+    
 }
