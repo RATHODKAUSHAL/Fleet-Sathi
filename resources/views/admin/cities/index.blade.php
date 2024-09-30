@@ -1,8 +1,8 @@
 @extends('admin.layouts.default')
 
-@section('page-script')
+{{-- @section('page-script')
     <script src="{{ asset('assets/admin/js/custom/states.js') }}"></script>
-@endsection
+@endsection --}}
 
 
 @section('content')
@@ -11,7 +11,7 @@
         <div class="flex flex-wrap items-center lg:items-end justify-between gap-5 pb-7">
             <div class="flex flex-col gap-2">
                 <h1 class="text-2xl font-semibold text-gray-900">
-                    States
+                    Cities
                 </h1>
                 <div class="flex items-center gap-2 text-sm font-medium text-gray-600">
                     <!-- Optional additional information can go here -->
@@ -19,7 +19,8 @@
             </div>
             <div class="flex items-center gap-3">
                 <a class="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    href="{{ route('states.create') }}">Create State</a>
+                    href="">Create Cities</a>
+                    {{-- {{ route('cities.create') }} --}}
             </div>
         </div>
 
@@ -28,7 +29,7 @@
             <div class="bg-white shadow-lg rounded-lg overflow-hidden">
                 <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                     <h3 class="text-lg font-medium text-gray-800">
-                        States
+                        Cities
                     </h3>
                 </div>
                 <div class="p-4">
@@ -44,12 +45,12 @@
                                         </th>
                                         <th class="px-4 py-2  text-left border min-w-[150px]">
                                             <span class="cursor-pointer">
-                                                State Name
+                                                Name
                                             </span>
                                         </th>
                                         <th class="px-4 py-2  text-left border min-w-[150px]">
                                             <span class="cursor-pointer">
-                                                State Abbreviation
+                                                State
                                             </span>
                                         </th>
                                         <th class="px-4 py-2  w-24  text-left">
@@ -57,7 +58,7 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                {{-- <tbody>
                                     @if (count($states) == 0)
                                         <tr>
                                             <td colspan="9" class="text-center">There is no record available.</td>
@@ -103,7 +104,7 @@
                                             </tr>
                                         @endforeach
                                     @endif
-                                </tbody>
+                                </tbody> --}}
                             </table>
                         </div>
                         <div class="flex justify-between items-center p-4 text-gray-600 text-sm">

@@ -110,11 +110,11 @@
                                     <img class="w-8 h-8 border-2 border-green-600 rounded-full" src="{{ asset('assets/front/media/profile.png') }}" alt="Profile">
                                 </div>
                                 <div class="pl-4">
-                                    <span class="block text-gray-800 text-sm font-semibold">Name</span>
-                                <span class="block text-gray-500 font-semibold text-sm">email@example.com</span>
+                                    <span class="block text-gray-800 text-sm font-semibold">{{ auth()->user()->first_name}}</span>
+                                <span class="block text-gray-500 font-semibold text-sm">{{ auth()->user()->email}}</span>
                                 </div>
-                                <div class="p-1">
-                                    <button class="border text-[10px] border-blue-500 text-blue-700 bg-blue-100 rounded-md w-8">
+                                <div>
+                                    <button class="border fixed text-[10px] border-blue-500 text-blue-700 bg-blue-100 rounded-md w-8">
                                         Pro
                                     </button>
                                 </div>
