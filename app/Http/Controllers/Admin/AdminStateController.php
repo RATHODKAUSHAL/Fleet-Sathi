@@ -40,7 +40,7 @@ class AdminStateController extends Controller
         $states->state_abbreviation = $request->state_abbreviation; 
         $states->save();
 
-        return redirect()->route('states.index');
+        return redirect()->route('admin.states.index');
     }
 
     
@@ -75,7 +75,7 @@ class AdminStateController extends Controller
     $states = StateMaster::find($id);
     
     if (!$states) {
-        return redirect()->route('states.index')->with('error', 'State not found.');
+        return redirect()->route('admin.states.index')->with('error', 'State not found.');
     }
 
     $request->validate([
@@ -87,7 +87,7 @@ class AdminStateController extends Controller
     $states->state_abbreviation = $request->state_abbreviation;
     $states->save();
 
-    return redirect()->route('states.index')->with('success', 'State updated successfully.');
+    return redirect()->route('admin.states.index')->with('success', 'State updated successfully.');
 }
 
 
@@ -110,7 +110,20 @@ class AdminStateController extends Controller
 
         $states = StateMaster::find($id);
         $states->delete($request->all());
-        return redirect()->route('states.index')->with("vehicle deleted successfully");
+        return redirect()->route('admin.states.index')->with("vehicle deleted successfully");
+    }
+
+    public function search(Request $request) {
+        $states = $this->search($request);
+
+        $param = [];
+        foreach($states as $key => $value){
+            $param[$key]['id'] = $value['id'];
+            $param[$key]['text'] =  $value->state_name ;
+        }
+        $results['results'] =  $param;
+        return $results;
+
     }
     
 }

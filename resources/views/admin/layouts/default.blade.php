@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
+    <link href="https://keenthemes.com/metronic" rel="canonical" />
     <link href="{{ asset('favicons/favicon.ico') }}" rel="shortcut icon" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <title>Responsive Layout</title>
@@ -18,7 +19,7 @@
         <!-- Sidebar Section -->
         <aside class="md:w-64 bg-white border-r border-gray-200  dark:border-gray-300 md:flex-shrink-0">
             <div class="p-2">
-                <a href="#">
+                <a href="{{ route('admin.dashboard') }}">
                     <img class="w-40 md:w-60 p-2" src="{{ asset('assets/front/media/logo.svg') }}" alt="Logo">
                 </a>
                 <button
@@ -30,7 +31,7 @@
 
             <nav class="space-y-2 p-4">
                 <div class="menu-item">
-                    <a href="{{ route('dashboard') }}" class="flex items-center gap-2.5 p-2.5 border border-transparent rounded-lg hover:bg-gray-100 dark:hover:bg-gray-200">
+                    <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2.5 p-2.5 border border-transparent rounded-lg hover:bg-gray-100 dark:hover:bg-gray-200">
                         <img class="w-5" src="{{ asset('assets/front/media/dashboard.png') }}" alt="Dashboard">
                         <span class="text-xs font-semibold text-gray-700 hover:text-primary">Dashboards</span>
                     </a>
@@ -52,13 +53,13 @@
                         <!-- Hidden menu items for City and States -->
                         <div id="locationItems" class="hidden border-l ml-4 border-gray-100">
                             <div class="menu-item">
-                                <a class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-200" href="#">
+                                <a href="{{ route('admin.cities.index') }}" class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-200" href="#">
                                     <span class="menu-bullet w-1.5 h-1.5 bg-primary rounded-full"></span>
                                     <span class="text-xs font-medium text-gray-700 hover:text-primary">City</span>
                                 </a>
                             </div>
                             <div class="menu-item">
-                                <a href="{{ route('states.index') }}" class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-200">
+                                <a href="{{ route('admin.states.index') }}" class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-200">
                                     <span class="menu-bullet w-1.5 h-1.5 bg-primary rounded-full"></span>
                                     <span class="text-xs font-medium text-gray-700 hover:text-primary">States</span>
                                 </a>
@@ -134,7 +135,7 @@
                                 </div>
                                 <div class="items-center justify-center flex">
                                     <button class="bg-gray-100 rounded-md border m-3">
-                                        <a href="#" class="block w-52 px-2 py-1 text-gray-600 text-sm hover:shadow-lg">Log out</a>
+                                        <a href="{{ route ('admin.auth.logout')}}" class="block w-52 px-2 py-1 text-gray-600 text-sm hover:shadow-lg">Log out</a>
                                     </button>
                                 </div>
                             </div>

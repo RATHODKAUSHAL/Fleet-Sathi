@@ -23,7 +23,7 @@ class AdminCityController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.cities.create');
     }
 
     /**
@@ -32,6 +32,12 @@ class AdminCityController extends Controller
     public function store(Request $request)
     {
         //
+        $cities = new CityMaster();
+        $cities->city_name = $request->city_name;
+        $cities->state_name = $request->state_name;
+        $cities->save();
+
+        return redirect()->route('admin.cities.index');
     }
 
     /**
@@ -64,5 +70,18 @@ class AdminCityController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function search(Request $request) {
+        $cities = $this->search($request);
+
+        $param = [];
+        foreach($cities as $key => $value){
+            $param[$key]['id'] = $value['id'];
+            $param[$key]['text'] =  $value->city_full_name ;
+        }
+        $results['results'] =  $param;
+        return $results;
+
     }
 }

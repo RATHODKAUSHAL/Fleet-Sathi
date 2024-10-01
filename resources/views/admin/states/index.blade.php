@@ -19,7 +19,7 @@
             </div>
             <div class="flex items-center gap-3">
                 <a class="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    href="{{ route('states.create') }}">Create State</a>
+                    href="{{ route('admin.states.create') }}">Create State</a>
             </div>
         </div>
 
@@ -85,14 +85,14 @@
                                                             <div class="absolute w-32 right-10 hidden bg-white shadow-lg rounded-md action-buttons">
                                                                 <div class="flex flex-row p-3">
                                                                     <img class="w-5 hover:text-blue-600" src="{{ asset('assets/front/media/Edit.png') }}" alt="">
-                                                                <button><a href="{{ route('states.edit',$state->id) }}" class="px-4 py-2 font-medium text-sm text-gray-800 ">Edit</a></button>
+                                                                <button><a href="{{ route('admin.states.edit',$state->id) }}" class="px-4 py-2 font-medium text-sm text-gray-800 hover:text-blue-600">Edit</a></button>
                                                                 </div>
-                                                                <form action="{{ route('states.destroy',$state->id) }}" method="POST" class="block">
+                                                                <form action="{{ route('admin.states.destroy',$state->id) }}" method="POST" class="block">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <div class="flex flex-row p-3">
                                                                         <img class="w-4 h-5" src="{{ asset('assets/front/media/bin.png') }}" alt="">
-                                                                        <button type="submit" class="w-full font-medium text-left px-4  text-sm text-gray-800">Remove</button>
+                                                                        <button type="submit" class="w-full font-medium text-left px-4  text-sm text-gray-800 hover:text-blue-600">Remove</button>
                                                                     </div>
                                                                 </form>
                                                             </div>

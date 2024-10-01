@@ -15,4 +15,8 @@ class StateMaster extends Model
         'state_name','state_abbreviation',
 
     ];
+
+    public function city(){
+        return $this->hasMany(CityMaster::class, 'state_id');
+    }
 }

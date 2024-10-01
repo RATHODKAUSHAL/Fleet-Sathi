@@ -19,8 +19,8 @@
             </div>
             <div class="flex items-center gap-3">
                 <a class="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    href="">Create Cities</a>
-                    {{-- {{ route('cities.create') }} --}}
+                    href="{{ route('admin.cities.create') }}">Create Cities</a>
+                    
             </div>
         </div>
 
@@ -50,7 +50,7 @@
                                         </th>
                                         <th class="px-4 py-2  text-left border min-w-[150px]">
                                             <span class="cursor-pointer">
-                                                State
+                                                Cities
                                             </span>
                                         </th>
                                         <th class="px-4 py-2  w-24  text-left">

@@ -27,7 +27,7 @@ class AdminAuthController extends Controller
         if (!empty($user)) {
             if (!is_null($user->password)) {
                 if (Auth::guard()->attempt($credentials)) {
-                    return redirect()->route('dashboard')->with('success', 'Login successful!');
+                    return redirect()->route('admin.dashboard')->with('success', 'Login successful!');
                 } else {
                     $request->session()->flash('error', 'Invalid password. Please try again.');
                 }
@@ -38,6 +38,11 @@ class AdminAuthController extends Controller
             $request->session()->flash('error', 'No user found with the provided email.');
         }
     
+        return redirect()->route('admin.auth.login');
+    }
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();    
         return redirect()->route('admin.auth.login');
     }
     

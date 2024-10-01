@@ -24,24 +24,27 @@ class UserSeeder extends Seeder
             //     'email' => 'vinod@fleetsathi.com',
             //     'password' => bcrypt('fleetsathi@1234'),
             // ],
-            // [
-            //     'first_name' => 'Yash',
-            //     'last_name' => 'Prajapati',
-            //     'email' => 'yash@fleetsathi.com',
-            //     'password' => bcrypt('fleetsathi@1234'),
-            // ],
+            [
+                'first_name' => 'Yash',
+                'last_name' => 'Prajapati',
+                'email' => 'yash@fleetsathi.com',
+                'password' => bcrypt('fleetsathi@1234'),
+                'contact_number' => '8401641101',
+                'role'=> "admin"
+            ],
             [
                 'first_name' => 'Kaushal',
                 'last_name' => 'Rathod',
                 'email' => 'kaushal@fleetsathi.com',
                 'password' => bcrypt('fleetsathi@1234'),
-                'contact_number' => '8401641101'
+                'contact_number' => '8401641101',
+                'role'=> "user"
             ],
         ];
 
         foreach ($usersData as $userData) {
             $user = User::create($userData);
-            $user->assignRole('admin');      
+            // $user->assignRole('admin');      
         }
     }
 }
