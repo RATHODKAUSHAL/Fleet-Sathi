@@ -125,5 +125,20 @@ class AdminStateController extends Controller
         return $results;
 
     }
+
+    public function findState(Request $request)
+    {
+        $state = StateMaster::findState($request);
+
+        if (empty($state)) {
+            return response()->json([
+                'success' => false,
+            ]);
+        }
+        return response()->json([
+            'success' => true,
+            'state' => $state->toArray()
+        ]);
+    }
     
 }

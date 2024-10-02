@@ -20,8 +20,8 @@ class CityMaster extends Model
         return $this->belongsTo(StateMaster::class, 'state_id');
     }
     
-    public function getCityFullNameAttribute()
-    {
-        return $this->city_name . ", " . $this->state->state_name;
-    }
+    // public function getCityFullNameAttribute()
+    // {
+    //     return $this->city_name . ", " . $this->state->state_name;
+    // }
 }

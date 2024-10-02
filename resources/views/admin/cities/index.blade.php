@@ -1,8 +1,8 @@
 @extends('admin.layouts.default')
 
-{{-- @section('page-script')
+@section('page-script')
     <script src="{{ asset('assets/admin/js/custom/states.js') }}"></script>
-@endsection --}}
+@endsection
 
 
 @section('content')
@@ -20,7 +20,7 @@
             <div class="flex items-center gap-3">
                 <a class="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     href="{{ route('admin.cities.create') }}">Create Cities</a>
-                    
+
             </div>
         </div>
 
@@ -58,42 +58,53 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                {{-- <tbody>
-                                    @if (count($states) == 0)
+                                <tbody>
+                                    @if (count($cities) == 0)
                                         <tr>
                                             <td colspan="9" class="text-center">There is no record available.</td>
                                         </tr>
                                     @else
-                                        @foreach ($states as $key=>$state)
-                                            <tr>
-                                                <td  class="px-7 py-4 border-b font-medium  text-left w-5">
-                                                    {{ $key 
-                                                    + 1 }}
+                                        @foreach ($cities as $key => $city)
+                                            <tr class="text-gray-500">
+                                                <td class="px-7 py-4 border-b font-medium  text-left w-5">
+                                                    {{ $key + 1 }}
                                                 </td>
                                                 <td class="px-7 py-4  text-left font-medium border  min-w-[150px]">
-                                                    {{ $state->state_name }}
+                                                    {{ $city->city_name }}, {{ @$city->state->state_name }}
                                                 </td>
                                                 <td class="px-7 py-4 text-left font-medium border min-w-[150px]">
-                                                    {{ $state->state_abbreviation }}
+                                                    {{ @$city->state->state_name }}
                                                 </td>
                                                 <td class="px-4 py-2 w-4 border text-left">
-                                                    <div class="flex items-center gap-4 ">   
+                                                    <div class="flex items-center gap-4 ">
                                                         <div class="relative">
-                                                            <button class="flex items-center focus:outline-none" onclick="toggleActions(event)">
-                                                                <img class="w-5" src="{{ asset('assets/front/media/dots.png') }}" alt="">
+                                                            <button class="flex items-center focus:outline-none"
+                                                                onclick="toggleActions(event)">
+                                                                <img class="w-5"
+                                                                    src="{{ asset('assets/front/media/dots.png') }}"
+                                                                    alt="">
                                                             </button>
                                                             <!-- Action buttons -->
-                                                            <div class="absolute w-32 right-10 hidden bg-white shadow-lg rounded-md action-buttons">
-                                                                <div class="flex flex-row p-3">
-                                                                    <img class="w-5 hover:text-blue-600" src="{{ asset('assets/front/media/Edit.png') }}" alt="">
-                                                                <button><a href="{{ route('states.edit',$state->id) }}" class="px-4 py-2 font-medium text-sm text-gray-800 ">Edit</a></button>
-                                                                </div>
-                                                                <form action="{{ route('states.destroy',$state->id) }}" method="POST" class="block">
+                                                            <div
+                                                                class="absolute w-32 right-10 hidden bg-white shadow-lg rounded-md action-buttons">
+                                                               <div class="flex flex-row p-3">
+                                                                    <img class="w-5 hover:text-blue-600"
+                                                                        src="{{ asset('assets/front/media/Edit.png') }}"
+                                                                        alt="">
+                                                                    <button><a
+                                                                            href="{{ route('admin.cities.edit', $city->id) }}"
+                                                                            class="px-4 py-2 font-medium text-sm text-gray-800 ">Edit</a></button>
+                                                                    </div>
+                                                                <form action="{{ route('admin.cities.destroy', $city->id) }}"
+                                                                    method="POST" class="block">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <div class="flex flex-row p-3">
-                                                                        <img class="w-4 h-5" src="{{ asset('assets/front/media/bin.png') }}" alt="">
-                                                                        <button type="submit" class="w-full font-medium text-left px-4  text-sm text-gray-800">Remove</button>
+                                                                        <img class="w-4 h-5"
+                                                                            src="{{ asset('assets/front/media/bin.png') }}"
+                                                                            alt="">
+                                                                        <button type="submit"
+                                                                            class="w-full font-medium text-left px-4  text-sm text-gray-800">Remove</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
@@ -104,7 +115,7 @@
                                             </tr>
                                         @endforeach
                                     @endif
-                                </tbody> --}}
+                                </tbody>
                             </table>
                         </div>
                         <div class="flex justify-between items-center p-4 text-gray-600 text-sm">

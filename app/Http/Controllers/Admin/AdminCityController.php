@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CityMaster;
+use App\Models\StateMaster;
 use Illuminate\Http\Request;
 
 class AdminCityController extends Controller
@@ -23,7 +24,11 @@ class AdminCityController extends Controller
      */
     public function create()
     {
-        return view('admin.cities.create');
+        $states = StateMaster::get();
+        return view('admin.cities.create',[
+            'states' => $states
+        ]);
+        // return view('admin.cities.create');
     }
 
     /**
@@ -34,7 +39,7 @@ class AdminCityController extends Controller
         //
         $cities = new CityMaster();
         $cities->city_name = $request->city_name;
-        $cities->state_name = $request->state_name;
+        $cities->state_id = $request->state_id;
         $cities->save();
 
         return redirect()->route('admin.cities.index');
@@ -54,22 +59,52 @@ class AdminCityController extends Controller
     public function edit(string $id)
     {
         //
+        $cities = CityMaster::findOrFail($id);
+        $states = StateMaster::get();
+
+        return view('admin.cities.create',[
+            'cities' => $cities,
+            'states' => $states
+
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request, $id)
+{
+    // Find the city by id
+    $cities = CityMaster::find($id);
+    
+    if (!$cities) {
+        return redirect()->route('admin.cities.index')->with('error', 'City not found.');
     }
+
+    // Validate the request
+    $request->validate([
+        'city_name' => 'required|string|max:255',
+        'state_id' => 'required|exists:state_master,id', // Validate the state_id
+    ]);
+
+    // Update city details
+    $cities->city_name = $request->city_name;
+    $cities->state_id = $request->state_id; // Update the state_id
+    $cities->save();
+
+    return redirect()->route('admin.cities.index')->with('success', 'City updated successfully.');
+}
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request,string $id)
     {
         //
+        $cities = CityMaster::find($id);
+        $cities->delete($request->all());
+        return redirect()->route('admin.cities.index')->with("vehicle deleted successfully");
+
     }
 
     public function search(Request $request) {

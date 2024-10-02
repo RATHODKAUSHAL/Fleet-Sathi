@@ -17,6 +17,8 @@ Route::middleware(['admin'])->prefix('admin')->as('admin.')->group(function() {
     Route::get('dashboard',[DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('states',AdminStateController::class);
+    Route::get('find-state',[AdminStateController::class,'findState'])->name('find.state');
+
 
     Route::resource('cities',AdminCityController::class);
 });

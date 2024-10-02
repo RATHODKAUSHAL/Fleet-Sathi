@@ -43,19 +43,26 @@
         @endif
                 <div>
                     <label for="city_name" class="block text-sm font-medium text-gray-500 mb-2">City Name</label>
-                    <input class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
-                           id="city_name" name="city_name" type="text" value="{{ old('city_name', @$cities->city_name) }}" />
+                    <input  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
+                           id="city_name" name="city_name" type="text" value="{{ old('city_name', @$cities->city_name) }}" placeholder="Enter a location"/>
                     @if ($errors->has('city_name'))
                         <p class="mt-2 text-sm text-red-600">{{ $errors->first('city_name') }}</p>
                     @endif
                 </div>
 
                 <div>
-                    <label for="state_name" class="block text-sm font-medium text-gray-500 mb-2">State Name</label>
-                    <input class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
-                           id="state_name" name="state_name" type="text"  value="{{ old('state_name', @$cities->state_name) }}" />
-                    @if ($errors->has('state_name'))
-                        <p class="mt-2 text-sm text-red-600">{{ $errors->first('state_name') }}</p>
+                    <label for="id" class="block text-sm font-medium text-gray-500 mb-2">State Name</label>
+                    <select class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
+                           id="state_id" name="state_id" type="text" data-url="{{ route('admin.find.state') }}">
+                           <option value=""></option>
+                           @foreach ($states as $state)
+                           <option value="{{ $state->id }}">{{ $state->state_name }}</option>
+                               
+                           @endforeach
+                        </select>
+
+                    @if ($errors->has('state_id'))
+                    <p class="p-2 text-sm font-bold text-red-800 rounded-lg  dark:text-red-400" role="alert">{{ $errors->first('state_id') }}</p>
                     @endif
                 </div>
             </div>

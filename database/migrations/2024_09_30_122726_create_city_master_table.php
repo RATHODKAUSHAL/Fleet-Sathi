@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('city_master', function (Blueprint $table) {
             $table->id();
+            $table->string('city_name')->nullable();
+            $table->string('state_name')->nullable();
+            $table->foreignId('state_id')->nullable();  
             $table->timestamps();
+            $table->foreign('state_id')->references('id')->on('state_master');
+
         });
     }
 
