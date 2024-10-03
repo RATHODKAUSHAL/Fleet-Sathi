@@ -31,6 +31,52 @@
                     <h3 class="text-lg font-medium text-gray-800">
                         Cities
                     </h3>
+                    <td class="px-4 py-2 w-4 border text-left">
+                        <div class="flex items-center gap-4 ">
+                            <div class="relative">
+                                <button class="flex items-center focus:outline-none" onclick="toggleActions(event)">
+                                    <img class="w-5" src="{{ asset('assets/front/media/filter.png') }}"
+                                        alt="">Filter
+                                </button>
+                                <!-- Action buttons -->
+                                <div
+                                    class="absolute w-64 h-auto  right-10 hidden bg-white shadow-lg rounded-md action-buttons p-3 mr-6">
+                                    <div class="flex flex-row p-3">
+
+                                        <div class="flex flex-col gap-2 justify-between ">
+                                            <label class="text-sm" for="">CityName</label>
+                                            <input class="border border-gray-900 w-full rounded-md" type="text"
+                                                name="" id="">
+                                        </div>
+                                    </div>
+                                    <form action="{{ route('admin.cities.index') }}" method="POST" class="block"
+                                        onsubmit="return false">
+                                        <div class="flex flex-col p-3 ">
+                                            <label data-url="{{ route('admin.states.search') }}" id="state_url"
+                                                for="state_id">StateName</label>
+                                            <select name="" id="" name="state_id"
+                                                class="border border-gray-900  rounded-md" data-placeholder="select state">
+                                                <option value=""></option>
+                                                @foreach ($cities as $key => $city)
+                                                    <option class="px-7 py-4 text-left font-medium border min-w-[150px]">
+                                                        {{ @$city->state->state_name }}
+                                                    </option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
+                                        <div class="flex flex-row items-center gap-3 p-2">
+
+                                            <button class="btn btn-sm border border-blue-700 btn-primary">Save</button>
+                                            <button
+                                                class="btn btn-sm border border-gray-300 rounded-md bg-gray-200 p-[5px]">reset</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                 </div>
                 <div class="p-4">
                     <div data-datatable="true" data-datatable-page-size="20" data-datatable-state-save="true">
@@ -87,15 +133,16 @@
                                                             <!-- Action buttons -->
                                                             <div
                                                                 class="absolute w-32 right-10 hidden bg-white shadow-lg rounded-md action-buttons">
-                                                               <div class="flex flex-row p-3">
+                                                                <div class="flex flex-row p-3">
                                                                     <img class="w-5 hover:text-blue-600"
                                                                         src="{{ asset('assets/front/media/Edit.png') }}"
                                                                         alt="">
                                                                     <button><a
                                                                             href="{{ route('admin.cities.edit', $city->id) }}"
                                                                             class="px-4 py-2 font-medium text-sm text-gray-800 ">Edit</a></button>
-                                                                    </div>
-                                                                <form action="{{ route('admin.cities.destroy', $city->id) }}"
+                                                                </div>
+                                                                <form
+                                                                    action="{{ route('admin.cities.destroy', $city->id) }}"
                                                                     method="POST" class="block">
                                                                     @csrf
                                                                     @method('DELETE')

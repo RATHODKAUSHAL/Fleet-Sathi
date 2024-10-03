@@ -113,7 +113,7 @@ class AdminCityController extends Controller
         $param = [];
         foreach($cities as $key => $value){
             $param[$key]['id'] = $value['id'];
-            $param[$key]['text'] =  $value->city_full_name ;
+            $param[$key]['text'] =  $value->city_name ;
         }
         $results['results'] =  $param;
         return $results;
