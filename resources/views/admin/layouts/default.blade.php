@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full" data-theme="true" data-theme-mode="dark">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,14 +11,12 @@
     <title>Metronic - Tailwind CSS</title>
 </head>
 
-<body class="min-h-screen flex flex-col bg-gray-50  dark:bg-gray-900" data-drawer="true"
+<body class="min-h-screen flex flex-col bg-gray-50" data-drawer="true"
     data-drawer-class="drawer drawer-start top-0 bottom-0" data-drawer-enable="true|lg:false">
-
-
     <div class="flex flex-col md:flex-row flex-grow">
         <!-- Sidebar Section -->
         <aside class="md:w-64 bg-white border-r border-gray-200  dark:border-gray-300 md:flex-shrink-0">
-            <div class="p-2">
+            <div>
                 <a href="{{ route('admin.dashboard') }}">
                     <img class="w-40 md:w-60 p-2" src="{{ asset('assets/front/media/logo.svg') }}" alt="Logo">
                 </a>
@@ -78,7 +75,7 @@
                 <div class="menu-section">
                     <div class="menu-item">
                         <a class="flex items-center gap-2.5 p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-200"
-                            href="#">
+                            href="{{ route('admin.users.index') }}">
                             <img class="w-5" src="{{ asset('assets/front/media/project-manager.png') }}"
                                 alt="User">
                             <span class="text-xs font-semibold text-gray-600">User Management</span>
@@ -86,7 +83,7 @@
                     </div>
                     <div class="menu-item">
                         <a class="flex items-center gap-2.5 p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-200"
-                            href="#">
+                            href="{{ route('admin.company.index') }}">
                             <img class="w-5" src="{{ asset('assets/front/media/office-building.png') }}"
                                 alt="User">
                             <span class="text-xs font-semibold text-gray-600">Company</span>
@@ -184,7 +181,7 @@
         document.getElementById('profileButton').addEventListener('click', function() {
             const dropdownMenu = document.getElementById('dropdownMenu');
             dropdownMenu.classList.toggle('hidden'); // Toggle the 'hidden' class
-        });
+        })
 
 
         document.getElementById('locationToggle').addEventListener('click', function() {
@@ -198,7 +195,7 @@
             // Toggle between add and minus icons
             addIcon.classList.toggle('hidden');
             minusIcon.classList.toggle('hidden');
-        });
+        })
 
         const defaultThemeMode = 'light'; // light|dark|system
         let themeMode;

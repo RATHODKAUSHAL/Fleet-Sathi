@@ -40,7 +40,7 @@ class ApiStateController extends Controller
         if($states){
             return response()->json([   
                 'status' => 200,
-                'Student' => $states
+                'states' => $states
             ],200);
         }else{
             return response()->json([
@@ -104,12 +104,12 @@ class ApiStateController extends Controller
             return response()->json([
                 'status'=> 200,
                 'states' => '$states'
-            ]);
+            ],200);
         }else{
             return response()->json([
                 'status' => 404,
                 'message' => 'No Such Status Found'
-            ]);
+            ],404);
         }
     }
 
@@ -159,7 +159,7 @@ class ApiStateController extends Controller
         $state = StateMaster::find($id);
         if($state){
             $state->delete();
-            DB::statement('ALTER TABLE states AUTO_INCREMENT = 1');
+            DB::statement('ALTER TABLE state_master AUTO_INCREMENT = 1');
             return response()->json([
                 'status' => 200,
                 'message' => 'State Deleted Succesfully'

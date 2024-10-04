@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminCityController;
+use App\Http\Controllers\Admin\AdminCompanyController;
 use App\Http\Controllers\Admin\AdminStateController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +21,11 @@ Route::middleware(['admin'])->prefix('admin')->as('admin.')->group(function() {
     Route::resource('states',AdminStateController::class);
     Route::get('find-state',[AdminStateController::class,'findState'])->name('find.state');
 
-
     Route::resource('cities',AdminCityController::class);
+
+    Route::resource('company',AdminCompanyController::class );
+    
+    Route::resource('users',AdminUserController::class );
 });
 
 

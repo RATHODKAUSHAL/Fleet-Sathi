@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAuthController;
-use App\Http\Controllers\Admin\AdminCityController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Api\ApiCityController;
 use App\Http\Controllers\Api\ApiStateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +18,7 @@ Route::prefix('api')->group(function () {
 
     // Public search routes
     Route::get('states/search', [ApiStateController::class, 'search'])->name('api.admin.states.search');
-    Route::get('cities/search', [AdminCityController::class, 'search'])->name('api.admin.cities.search');
+    Route::get('cities/search', [ApiCityController::class, 'search'])->name('api.admin.cities.search');
 });
 
 // Protected API routes with authentication middleware
@@ -30,4 +30,4 @@ Route::prefix('api')->group(function () {
     Route::get('find-state', [ApiStateController::class, 'findState'])->name('find.state');
 
     // Cities resource routes
-    Route::resource('cities', AdminCityController::class)->except(['create', 'edit']);
+    Route::resource('cities', ApiCityController::class)->except(['create', 'edit']);

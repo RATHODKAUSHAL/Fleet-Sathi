@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
                 'last_name' => 'Prajapati',
                 'email' => 'yash@fleetsathi.com',
                 'password' => bcrypt('fleetsathi@1234'),
-                'contact_number' => '8401641101',
+                'contact_number' => '8401641102',
                 'role'=> "admin"
             ],
             [
@@ -40,6 +40,14 @@ class UserSeeder extends Seeder
                 'contact_number' => '8401641101',
                 'role'=> "user"
             ],
+            [
+                'first_name' => 'Kaushal1',
+                'last_name' => 'Rathod1',
+                'email' => 'kaushal@1234.com',
+                'password' => bcrypt('kaushal@1234'),
+                'contact_number' => '8401641103',
+                'role'=> "admin"
+            ]
         ];
 
         foreach ($usersData as $userData) {
