@@ -33,18 +33,18 @@
             </h3>
         </div>
 
-        <form method="POST" action="@if(@$user) {{route('admin.users.update', $user)}} @else {{ route('admin.users.store') }} @endif">
-            
+        <form method="POST" action="@if(@$users) {{route('admin.users.update', $users)}} @else {{ route('admin.users.store') }} @endif">
+             
             <!-- Input Fields Section -->
             <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
                 @csrf
-            @if (@$user)
+            @if (@$users)
             {{ method_field('PUT') }}
         @endif
                 <div>
                     <label for="first_name" class="block text-sm font-medium text-gray-500 mb-2">First Name</label>
                     <input class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
-                           id="first_name" name="first_name" type="text" value="{{ old('first_name', @$user->first_name) }}" />
+                           id="first_name" name="first_name" type="text" value="{{ old('first_name', @$users->first_name) }}" />
                     @if ($errors->has('first_name'))
                         <p class="mt-2 text-sm text-red-600">{{ $errors->first('first_name') }}</p>
                     @endif
@@ -53,7 +53,7 @@
                 <div>
                     <label for="last_name" class="block text-sm font-medium text-gray-500 mb-2">Last Name</label>
                     <input class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
-                           id="last_name" name="last_name" type="text"  value="{{ old('last_name', @$user->last_name) }}" />
+                           id="last_name" name="last_name" type="text"  value="{{ old('last_name', @$users->last_name) }}" />
                     @if ($errors->has('last_name'))
                         <p class="mt-2 text-sm text-red-600">{{ $errors->first('last_name') }}</p>
                     @endif
@@ -61,7 +61,7 @@
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-500 mb-2">Email</label>
                     <input class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
-                           id="email" name="email" type="text"  value="{{ old('email', @$user->email) }}" />
+                           id="email" name="email" type="text"  value="{{ old('email', @$users->email) }}" />
                     @if ($errors->has('email'))
                         <p class="mt-2 text-sm text-red-600">{{ $errors->first('email') }}</p>
                     @endif
@@ -69,11 +69,19 @@
                 <div>
                     <label for="contact_number" class="block text-sm font-medium text-gray-500 mb-2">Contact Number</label>
                     <input class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
-                           id="contact_number" name="contact_number" type="text"  value="{{ old('contact_number', @$user->contact_number) }}" />
+                           id="contact_number" name="contact_number" type="text"  value="{{ old('contact_number', @$users->contact_number) }}" />
                     @if ($errors->has('contact_number'))
                         <p class="mt-2 text-sm text-red-600">{{ $errors->first('contact_number') }}</p>
                     @endif
                 </div>
+                {{-- <div>
+                    <label for="role" class="block text-sm font-medium text-gray-500 mb-2">role</label>
+                    <input class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
+                           id="role" name="role" type="text"  value="{{ old('role', @$user->role) }}" />
+                    @if ($errors->has('role'))
+                        <p class="mt-2 text-sm text-red-600">{{ $errors->first('role') }}</p>
+                    @endif
+                </div> --}}
             
             </div>
 

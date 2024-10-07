@@ -109,22 +109,25 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                {{-- <tbody>
-                                    @if (count($cities) == 0)
+                                <tbody>
+                                    @if (count($user) == 0)
                                         <tr>
                                             <td colspan="9" class="text-center">There is no record available.</td>
                                         </tr>
                                     @else
-                                        @foreach ($cities as $key => $city)
+                                        @foreach ($user as $key => $users)
                                             <tr class="text-gray-500">
                                                 <td class="px-7 py-4 border-b font-medium  text-left w-5">
                                                     {{ $key + 1 }}
                                                 </td>
                                                 <td class="px-7 py-4  text-left font-medium border  min-w-[150px]">
-                                                    {{ $city->city_name }}, {{ @$city->state->state_name }}
+                                                    {{ $users->first_name }}, {{ @$users->last_name }}
                                                 </td>
                                                 <td class="px-7 py-4 text-left font-medium border min-w-[150px]">
-                                                    {{ @$city->state->state_name }}
+                                                    {{ @$users->email }}
+                                                </td>
+                                                <td class="px-7 py-4 text-left font-medium border min-w-[150px]">
+                                                    {{ @$users->contact_number }}
                                                 </td>
                                                 <td class="px-4 py-2 w-4 border text-left">
                                                     <div class="flex items-center gap-4 ">
@@ -143,11 +146,11 @@
                                                                         src="{{ asset('assets/front/media/Edit.png') }}"
                                                                         alt="">
                                                                     <button><a
-                                                                            href="{{ route('admin.cities.edit', $city->id) }}"
+                                                                            href="{{ route('admin.users.edit', $users->id) }}"
                                                                             class="px-4 py-2 font-medium text-sm text-gray-800 ">Edit</a></button>
                                                                 </div>
                                                                 <form
-                                                                    action="{{ route('admin.cities.destroy', $city->id) }}"
+                                                                    action="{{ route('admin.users.destroy', $users->id) }}"
                                                                     method="POST" class="block">
                                                                     @csrf
                                                                     @method('DELETE')
@@ -167,7 +170,7 @@
                                             </tr>
                                         @endforeach
                                     @endif
-                                </tbody> --}}
+                                </tbody>
                             </table>
                         </div>
                         <div class="flex justify-between items-center p-4 text-gray-600 text-sm">

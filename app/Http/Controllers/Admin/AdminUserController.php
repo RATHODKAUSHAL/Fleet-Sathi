@@ -60,6 +60,10 @@ class AdminUserController extends Controller
     public function edit(string $id)
     {
         //
+            $users = User::findOrFail($id);
+            return view('admin.users.create',[
+                'users' => $users,
+            ]);
     }
 
     /**
@@ -68,13 +72,49 @@ class AdminUserController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $users = User::find($id);
+
+        if(!$users) {
+            return redirect()->route('admin.users.index')->with('error', 'User not found.');
+        }
+
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' =>  'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'contact_number' => 'required|string|max:255'
+        ]);
+
+        $users->first_name = $request->first_name;
+        $users->last_name = $request->last_name;
+        $users->email = $request->email;
+        $users->contact_number = $request->contact_number;
+        $users->save();
+
+        return redirect()->route('admin.users.index')->with('success', 'User Updated Succesfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request,string $id)
     {
         //
+        $user = User::find($id);
+        $user->delete($request->all());
+        return redirect()->route('admin.users.index')->with('User Deleted Successfully');
+    }
+
+    public function search(Request $request) {
+        $users = $this->search($request);
+        if(empty($users)){
+            return response()->json([
+                'success' =>false,
+            ]);
+        }
+        return response()->json([
+            'success' => true,
+            'users' =>  $users->toArray()
+        ]);
     }
 }

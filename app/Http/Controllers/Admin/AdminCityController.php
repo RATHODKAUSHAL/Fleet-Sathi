@@ -119,4 +119,18 @@ class AdminCityController extends Controller
         return $results;
 
     }
+    public function findCity(Request $request)
+    {
+        $City = CityMaster::findCity($request);
+
+        if (empty($City)) {
+            return response()->json([
+                'success' => false,
+            ]);
+        }
+        return response()->json([
+            'success' => true,
+            'state' => $City->toArray()
+        ]);
+    }
 }

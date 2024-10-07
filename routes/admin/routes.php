@@ -22,10 +22,14 @@ Route::middleware(['admin'])->prefix('admin')->as('admin.')->group(function() {
     Route::get('find-state',[AdminStateController::class,'findState'])->name('find.state');
 
     Route::resource('cities',AdminCityController::class);
+    Route::get('find-city',[AdminCityController::class,'findCity'])->name('find.city');
+
 
     Route::resource('company',AdminCompanyController::class );
     
     Route::resource('users',AdminUserController::class );
+    Route::get('users-search',[AdminUserController::class,'search'])->name('users.search');
+
 });
 
 

@@ -19,7 +19,7 @@
             </div>
             <div class="flex items-center gap-3">
                 <a class="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    href="">Create Company</a> {{-- {{ route('admin.cities.create') }} --}}
+                    href=" {{ route('admin.company.create') }}">Create Company</a> 
 
             </div>
         </div>
