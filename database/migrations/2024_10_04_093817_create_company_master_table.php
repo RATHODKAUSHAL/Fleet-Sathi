@@ -20,13 +20,13 @@ return new class extends Migration
             $table->string('logo_path')->nullable();
             $table->string('gst_number')->nullable();
             $table->string('co_pan_number')->nullable();
-            $table->foreignId('admin_id')->unique();
-            $table->foreignId('city_id')->unique();
-            $table->foreignId('state_id')->unique();
+            $table->foreignId('user_id')->nullable();
+            $table->foreignId('city_id')->nullable();
+            $table->foreignId('state_id')->nullable();
             $table->string('website')->nullable();
             $table->timestamps();
 
-            $table->foreign('admin_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('city_id')->references('id')->on('city_master');
             $table->foreign('state_id')->references('id')->on('state_master');
         });

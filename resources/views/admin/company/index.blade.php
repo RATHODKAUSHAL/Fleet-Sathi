@@ -10,7 +10,7 @@
         <!-- Header Section -->
         <div class="flex flex-wrap items-center lg:items-end justify-between gap-5 pb-7">
             <div class="flex flex-col gap-2">
-                <h1 class="text-2xl font-semibold text-gray-900">
+                <h1 class="text-xl font-semibold text-gray-900">
                     Company
                 </h1>
                 <div class="flex items-center gap-2 text-sm font-medium text-gray-600">
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="flex items-center gap-3">
-                <a class="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                <a class="px-4 py-2 bg-blue-600 text-white text-[12px] font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     href=" {{ route('admin.company.create') }}">Create Company</a> 
 
             </div>
@@ -28,14 +28,14 @@
         <div class="grid gap-6 lg:gap-8 border rounded-md">
             <div class="bg-white shadow-lg rounded-lg overflow-hidden">
                 <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-                    <h3 class="text-lg font-medium text-gray-800">
+                    <h3 class="text-sm font-medium text-gray-800">
                         Company List
                     </h3>
                     <td class="px-4 py-2 w-4 border text-left">
                         <div class="flex items-center gap-4 ">
                             <div class="relative">
-                                <button class="flex items-center focus:outline-none" onclick="toggleActions(event)">
-                                    <img class="w-5" src="{{ asset('assets/front/media/filter.png') }}" 
+                                <button class="flex text-[12px] items-center focus:outline-none" onclick="toggleActions(event)">
+                                    <img class="w-4" src="{{ asset('assets/front/media/filter.png') }}" 
                                         alt="">Filter
                                 </button>
                                 <!-- Action buttons -->
@@ -83,7 +83,7 @@
                         <div>
                             <table class="min-w-full table-fixed border text-gray-600  text-sm">
                                 <thead class="bg-gray-100">
-                                    <tr>
+                                    <tr class="text-[12px]">
                                         <th class="px-4 py-2 border text-left w-5">
                                             <span class="cursor-pointer">
                                                 #
@@ -119,22 +119,32 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                {{-- <tbody>
-                                    @if (count($cities) == 0)
+                                {{--  --}}
+                                <tbody>
+                                    @if (count($company) == 0)
                                         <tr>
                                             <td colspan="9" class="text-center">There is no record available.</td>
                                         </tr>
                                     @else
-                                        @foreach ($cities as $key => $city)
-                                            <tr class="text-gray-500">
+                                        @foreach ($company as $key => $companies)
+                                            <tr class="text-gray-500 text-[12px]">
                                                 <td class="px-7 py-4 border-b font-medium  text-left w-5">
                                                     {{ $key + 1 }}
                                                 </td>
                                                 <td class="px-7 py-4  text-left font-medium border  min-w-[150px]">
-                                                    {{ $city->city_name }}, {{ @$city->state->state_name }}
+                                                    {{ $companies->company_name }}
                                                 </td>
                                                 <td class="px-7 py-4 text-left font-medium border min-w-[150px]">
-                                                    {{ @$city->state->state_name }}
+                                                    {{ @$companies->contact_number }}
+                                                </td>
+                                                <td class="px-7 py-4 text-left font-medium border min-w-[150px]">
+                                                    {{ @$companies->user->first_name }}
+                                                </td>
+                                                <td class="px-7 py-4 text-left font-medium border min-w-[150px]">
+                                                    {{ @$companies->city->city_name }}
+                                                </td>
+                                                <td class="px-7 py-4 text-left font-medium border min-w-[150px]">
+                                                    {{ @$companies->company_address}}
                                                 </td>
                                                 <td class="px-4 py-2 w-4 border text-left">
                                                     <div class="flex items-center gap-4 ">
@@ -153,11 +163,11 @@
                                                                         src="{{ asset('assets/front/media/Edit.png') }}"
                                                                         alt="">
                                                                     <button><a
-                                                                            href="{{ route('admin.cities.edit', $city->id) }}"
+                                                                            {{-- href="{{ route('admin.cities.edit', $city->id) }}" --}}
                                                                             class="px-4 py-2 font-medium text-sm text-gray-800 ">Edit</a></button>
                                                                 </div>
                                                                 <form
-                                                                    action="{{ route('admin.cities.destroy', $city->id) }}"
+                                                                    {{-- action="{{ route('admin.cities.destroy', $city->id) }}" --}}
                                                                     method="POST" class="block">
                                                                     @csrf
                                                                     @method('DELETE')
@@ -177,10 +187,10 @@
                                             </tr>
                                         @endforeach
                                     @endif
-                                </tbody> --}}
+                                </tbody>
                             </table>
                         </div>
-                        <div class="flex justify-between items-center p-4 text-gray-600 text-sm">
+                        <div class="flex justify-between items-center p-4 text-gray-600 text-[12px]">
                             <div class="flex items-center gap-2">
                                 <span>Show</span>
                                 <select data-datatable-size="true"

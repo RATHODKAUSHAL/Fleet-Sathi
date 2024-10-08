@@ -119,7 +119,7 @@
                            id="select_user" name="user_id" type="text" > 
                            <option value=""></option>
                            @foreach ($users as $user)
-                           <option value="{{ $user->user_id }}">{{ $user->first_name }}</option>  
+                           <option value="{{ $user->id }}">{{ $user->first_name }}</option>  
                                
                            @endforeach
                         </select>

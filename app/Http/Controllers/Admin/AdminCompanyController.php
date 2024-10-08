@@ -40,6 +40,7 @@ class AdminCompanyController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         //
         $company = new CompanyMaster();
         $company->company_name = $request->company_name;
@@ -50,7 +51,7 @@ class AdminCompanyController extends Controller
         $company->co_pan_number = $request->co_pan_number;
         $company->website = $request->website;
         $company->city_id = $request->city_id;
-        $company->user_id = $request->user_id->first_name;
+        $company->user_id = $request->user_id;
         $company->save();
         return redirect()->route('admin.company.index');
     }

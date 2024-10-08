@@ -17,7 +17,7 @@ class CompanyMaster extends Model
         'logo_path',
         'gst_number',
         'co_pan_number',
-        'admin_id',
+        'user_id',
         'city_id',
         'state_id',
         'website'
@@ -33,9 +33,9 @@ class CompanyMaster extends Model
         return $this->belongsTo(CityMaster::class, 'city_id');
     }
 
-    public function admin()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'admin_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function getCOmpanyLogoUrlAttribute(){
