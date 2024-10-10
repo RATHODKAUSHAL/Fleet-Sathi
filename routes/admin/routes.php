@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminCompanyController;
 use App\Http\Controllers\Admin\AdminStateController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\tc_city_urlsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AdminAuthController::class, 'login'])->name('admin.auth.login');
@@ -29,6 +30,9 @@ Route::middleware(['admin'])->prefix('admin')->as('admin.')->group(function() {
     
     Route::resource('users',AdminUserController::class );
     Route::get('users-search',[AdminUserController::class,'search'])->name('users.search');
+
+    Route::resource('tc-city-url', tc_city_urlsController::class );
+
 
 });
 

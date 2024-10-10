@@ -91,7 +91,7 @@
                     </div>
                     <div class="menu-item">
                         <a class="flex items-center gap-2.5 p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-200"
-                            href="#">
+                            href="{{ route('admin.tc-city-url.index') }}">
                             <img class="w-5" src="{{ asset('assets/front/media/cityscape.png') }}" alt="User">
                             <span class="text-xs font-semibold text-gray-600">TC City URLs</span>
                         </a>
