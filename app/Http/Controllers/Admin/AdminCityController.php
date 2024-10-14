@@ -12,12 +12,26 @@ class AdminCityController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $cities = CityMaster::get();
-        return view('admin.cities.index', compact('cities'));
+        $query = CityMaster::with('state');
+
+        // Apply filters if present
+        if ($request->has('city_name') && !empty($request->city_name)) {
+            $query->where('city_name', 'LIKE', '%' . $request->city_name . '%');
+        }
+
+        if ($request->has('state_id') && !empty($request->state_id)) {
+            $query->where('state_id', $request->state_id);
+        }
+
+        $cities = $query->paginate(10);
+
+        $states = StateMaster::get(); // To populate state filter options
+
+        return view('admin.cities.index', compact('cities', 'states'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -25,7 +39,7 @@ class AdminCityController extends Controller
     public function create()
     {
         $states = StateMaster::get();
-        return view('admin.cities.create',[
+        return view('admin.cities.create', [
             'states' => $states
         ]);
         // return view('admin.cities.create');
@@ -62,7 +76,7 @@ class AdminCityController extends Controller
         $cities = CityMaster::findOrFail($id);
         $states = StateMaster::get();
 
-        return view('admin.cities.create',[
+        return view('admin.cities.create', [
             'cities' => $cities,
             'states' => $states
 
@@ -73,51 +87,50 @@ class AdminCityController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-{
-    // Find the city by id
-    $cities = CityMaster::find($id);
-    
-    if (!$cities) {
-        return redirect()->route('admin.cities.index')->with('error', 'City not found.');
+    {
+        // Find the city by id
+        $cities = CityMaster::find($id);
+
+        if (!$cities) {
+            return redirect()->route('admin.cities.index')->with('error', 'City not found.');
+        }
+
+        // Validate the request
+        $request->validate([
+            'city_name' => 'required|string|max:255',
+            'state_id' => 'required|exists:state_master,id', // Validate the state_id
+        ]);
+
+        // Update city details
+        $cities->city_name = $request->city_name;
+        $cities->state_id = $request->state_id; // Update the state_id
+        $cities->save();
+
+        return redirect()->route('admin.cities.index')->with('success', 'City updated successfully.');
     }
-
-    // Validate the request
-    $request->validate([
-        'city_name' => 'required|string|max:255',
-        'state_id' => 'required|exists:state_master,id', // Validate the state_id
-    ]);
-
-    // Update city details
-    $cities->city_name = $request->city_name;
-    $cities->state_id = $request->state_id; // Update the state_id
-    $cities->save();
-
-    return redirect()->route('admin.cities.index')->with('success', 'City updated successfully.');
-}
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request,string $id)
+    public function destroy(Request $request, string $id)
     {
         //
         $cities = CityMaster::find($id);
         $cities->delete($request->all());
         return redirect()->route('admin.cities.index')->with("vehicle deleted successfully");
-
     }
 
-    public function search(Request $request) {
-        $cities = $this->search($request);
+    public function search(Request $request)
+    {
+        $cities = CityMaster::search($request);
 
         $param = [];
-        foreach($cities as $key => $value){
+        foreach ($cities as $key => $value) {
             $param[$key]['id'] = $value['id'];
-            $param[$key]['text'] =  $value->city_name ;
+            $param[$key]['text'] =  $value->city_name;
         }
         $results['results'] =  $param;
         return $results;
-
     }
     public function findCity(Request $request)
     {

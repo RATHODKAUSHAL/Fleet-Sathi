@@ -114,7 +114,7 @@ class AdminStateController extends Controller
     }
 
     public function search(Request $request) {
-        $states = $this->search($request);
+        $states = StateMaster::search($request);
 
         $param = [];
         foreach($states as $key => $value){

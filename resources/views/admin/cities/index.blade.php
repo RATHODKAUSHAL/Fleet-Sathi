@@ -2,6 +2,9 @@
 
 @section('page-script')
     <script src="{{ asset('assets/admin/js/custom/states.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/jquery/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/cities.js') }}"></script>
 @endsection
 
 
@@ -39,47 +42,44 @@
                                         alt="">Filter
                                 </button>
                                 <!-- Action buttons -->
-                                <div
-                                    class="absolute w-64 h-auto  right-10 hidden bg-white shadow-lg rounded-md action-buttons p-3 mr-6">
-                                    <div class="flex flex-row p-3">
-
-                                        <div class="flex flex-col gap-2 justify-between ">
-                                            <label class="text-sm" for="">CityName</label>
-                                            <input class="border border-gray-900 w-full rounded-md" type="text"
-                                                name="" id="">
+                                <div class="absolute w-64 h-auto right-10 hidden bg-white shadow-lg rounded-md action-buttons p-3 mr-6">
+                                    <form action="{{ route('admin.cities.index') }}" method="GET" enctype="multipart/form-data" id="filter_form">
+                                        <div class="flex flex-row p-3">
+                                            <div class="flex flex-col gap-2 justify-between">
+                                                <label class="text-sm" for="city_name">City Name</label>
+                                                <input class="border border-gray-900 w-full rounded-md" type="text" id="city_name" name="city_name"
+                                                    value="{{ request()->city_name }}">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <form action="{{ route('admin.cities.index') }}" method="POST" class="block"
-                                        onsubmit="return false">
-                                        <div class="flex flex-col p-3 ">
-                                            <label data-url="{{ route('admin.states.search') }}" id="state_url"
-                                                for="state_id">StateName</label>
-                                            <select name="" id="" name="state_id"
-                                                class="border border-gray-900  rounded-md" data-placeholder="select state">
-                                                <option value=""></option>
-                                                @foreach ($cities as $key => $city)
-                                                    <option class="px-7 py-4 text-left font-medium border min-w-[150px]">
-                                                        {{ @$city->state->state_name }}
+                                
+                                        <div class="flex flex-col p-3">
+                                            <label for="state_id">State Name</label>
+                                            <select id="select_state" name="state_id" class="border border-gray-900 rounded-md"
+                                                data-placeholder="Search state">
+                                                <option value="">Select State</option>
+                                                @foreach ($states as $state)
+                                                    <option value="{{ $state->id }}" {{ request()->state_id == $state->id ? 'selected' : '' }}>
+                                                        {{ $state->state_name }}
                                                     </option>
                                                 @endforeach
-
                                             </select>
                                         </div>
+                                
                                         <div class="flex flex-row items-center gap-3 p-2">
-
-                                            <button class="btn btn-sm border border-blue-700 btn-primary">Save</button>
-                                            <button
-                                                class="btn btn-sm border border-gray-300 rounded-md bg-gray-200 p-[5px]">reset</button>
+                                            <button type="submit" class="btn btn-sm border border-blue-700 btn-primary">Filter</button>
+                                            <a href="{{ route('admin.cities.index') }}" class="btn btn-sm border border-gray-300 rounded-md bg-gray-200 p-[5px]">
+                                                Reset
+                                            </a>
                                         </div>
-
                                     </form>
                                 </div>
+                                
                             </div>
                         </div>
                     </td>
                 </div>
                 <div class="p-4">
-                    <div data-datatable="true" data-datatable-page-size="20" data-datatable-state-save="true">
+                    <div data-datatable="true" id="city_table" data-datatable-page-size="20" data-datatable-state-save="true">
                         <div>
                             <table class="min-w-full table-fixed border text-gray-600  text-sm">
                                 <thead class="bg-gray-100">
@@ -166,20 +166,21 @@
                             </table>
                         </div>
                         <div class="flex justify-between items-center p-4 text-gray-600 text-sm">
-                            <div class="flex items-center gap-2">
+                            {{-- <div class="flex items-center gap-2">
                                 <span>Show</span>
-                                <select data-datatable-size="true"
+                                <select data-datatable-size="true" name="perpage"
                                     class="w-16 px-2 py-1 border border-gray-300 rounded focus:ring focus:ring-indigo-500">
+                                    <option value="5"  {{ request()->perpage == 5 ? 'selected' : '' }}>5</option>
+                                    <option value="10" {{ request()->perpage == 10 ? 'selected' : '' }}>10</option>
+                                    <option value="20" {{ request()->perpage == 20 ? 'selected' : '' }}>20</option>
                                 </select>
-                                <span>Per Page</span>
-                            </div>
+                                Per Page
+                            </div> --}}
                             <div class="flex items-center gap-4">
-                                <span data-datatable-info="true">
-                                    <!-- Info Text -->
-                                </span>
-                                <div class="pagination-sm">
-                                    <!-- Pagination controls -->
-                                </div>
+                                <span>Showing {{ $cities->firstItem() }} to {{ $cities->lastItem() }} of {{ $cities->total() }}
+                                    cities</span>
+                                <!-- Render pagination links -->
+                                {{ $cities->links('pagination::tailwind') }}
                             </div>
                         </div>
                     </div>
