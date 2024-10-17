@@ -11,7 +11,7 @@
     <title>Metronic - Tailwind CSS</title>
 </head>
 
-<body class="min-h-screen flex flex-col bg-gray-50" data-drawer="true"
+<body class="min-h-screen flex flex-col bg-white" data-drawer="true"
     data-drawer-class="drawer drawer-start top-0 bottom-0" data-drawer-enable="true|lg:false">
     <div class="flex flex-col md:flex-row flex-grow">
         <!-- Sidebar Section -->

@@ -19,7 +19,7 @@
             </div>
             <div class="flex items-center gap-3">
                 <a class="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    href="">Create State</a>{{-- {{ route('admin.states.create') }} --}}
+                    href="{{ route('admin.tc-city-url.create') }}">Create State</a>
             </div>
         </div>
 
@@ -34,7 +34,7 @@
                 <div class="p-4">
                     <div data-datatable="true" data-datatable-page-size="20" data-datatable-state-save="true">
                         <div>
-                            <table class="min-w-full table-fixed border text-gray-600  text-sm">
+                            <table class="min-w-full table-fixed font-normal border text-gray-600  text-sm">
                                 <thead class="bg-gray-100">
                                     <tr>
                                         <th class="px-4 py-2 border text-left w-5">
@@ -44,12 +44,32 @@
                                         </th>
                                         <th class="px-4 py-2  text-left border min-w-[150px]">
                                             <span class="cursor-pointer">
-                                                State Name
+                                                City Name
                                             </span>
                                         </th>
                                         <th class="px-4 py-2  text-left border min-w-[150px]">
                                             <span class="cursor-pointer">
-                                                State Abbreviation
+                                                Page Title
+                                            </span>
+                                        </th>
+                                        <th class="px-4 py-2  text-left border min-w-[150px]">
+                                            <span class="cursor-pointer">
+                                                Meta Title
+                                            </span>
+                                        </th>
+                                        <th class="px-4 py-2  text-left border min-w-[150px]">
+                                            <span class="cursor-pointer">
+                                                Meta Description
+                                            </span>
+                                        </th>
+                                        <th class="px-4 py-2  text-left border min-w-[150px]">
+                                            <span class="cursor-pointer">
+                                                City Heading
+                                            </span>
+                                        </th>
+                                        <th class="px-4 py-2  text-left border min-w-[150px]">
+                                            <span class="cursor-pointer">
+                                                Transport Area
                                             </span>
                                         </th>
                                         <th class="px-4 py-2  w-24  text-left">
@@ -57,24 +77,37 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                {{-- <tbody>
-                                    @if (count($states) == 0)
+                                <tbody>
+                                    @if (count($TransportUrl) == 0)
                                         <tr>
                                             <td colspan="9" class="text-center">There is no record available.</td>
                                         </tr>
                                     @else
-                                        @foreach ($states as $key=>$state)
+                                        @foreach ($TransportUrl as $key=>$trasnporturl)
                                             <tr>
                                                 <td  class="px-7 py-4 border-b font-medium  text-left w-5">
                                                     {{ $key 
                                                     + 1 }}
                                                 </td>
                                                 <td class="px-7 py-4  text-left font-medium border  min-w-[150px]">
-                                                    {{ $state->state_name }}
+                                                    {{ $trasnporturl->city->city_name}}
                                                 </td>
                                                 <td class="px-7 py-4 text-left font-medium border min-w-[150px]">
-                                                    {{ $state->state_abbreviation }}
+                                                    {{ $trasnporturl->page_title }}
                                                 </td>
+                                                <td class="px-7 py-4 text-left font-medium border min-w-[150px]">
+                                                    {{ $trasnporturl->meta_title }}
+                                                </td>
+                                                <td class="px-7 py-4 text-left font-medium border min-w-[150px]">
+                                                    {{ $trasnporturl->meta_description }}
+                                                </td>
+                                                <td class="px-7 py-4 text-left font-medium border min-w-[150px]">
+                                                    {{ $trasnporturl->city_heading }}
+                                                </td>
+                                                <td class="px-7 py-4 text-left font-medium border min-w-[150px]">
+                                                    {{ $trasnporturl->transport_area }}
+                                                </td>
+                                                
                                                 <td class="px-4 py-2 w-4 border text-left">
                                                     <div class="flex items-center gap-4 ">   
                                                         <div class="relative">
@@ -85,9 +118,9 @@
                                                             <div class="absolute w-32 right-10 hidden bg-white shadow-lg rounded-md action-buttons">
                                                                 <div class="flex flex-row p-3">
                                                                     <img class="w-5 hover:text-blue-600" src="{{ asset('assets/front/media/Edit.png') }}" alt="">
-                                                                <button><a href="{{ route('admin.states.edit',$state->id) }}" class="px-4 py-2 font-medium text-sm text-gray-800 hover:text-blue-600">Edit</a></button>
+                                                                <button><a href="{{ route('admin.tc-city-url.edit', $trasnporturl->id) }}"  class="px-4 py-2 font-medium text-sm text-gray-800 hover:text-blue-600">Edit</a></button> 
                                                                 </div>
-                                                                <form action="{{ route('admin.states.destroy',$state->id) }}" method="POST" class="block">
+                                                                <form   action="{{ route('admin.tc-city-url.destroy',$trasnporturl->id) }}" method="POST" class="block">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <div class="flex flex-row p-3">
@@ -103,7 +136,7 @@
                                             </tr>
                                         @endforeach
                                     @endif
-                                </tbody> --}}
+                                </tbody>
                             </table>
                         </div>
                         <div class="flex justify-between items-center p-4 text-gray-600 text-sm">

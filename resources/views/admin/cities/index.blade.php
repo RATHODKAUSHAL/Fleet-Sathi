@@ -139,7 +139,7 @@
                                                                         alt="">
                                                                     <button><a
                                                                             href="{{ route('admin.cities.edit', $city->id) }}"
-                                                                            class="px-4 py-2 font-medium text-sm text-gray-800 ">Edit</a></button>
+                                                                            class="px-4 py-2 font-medium  text-gray-800 ">Edit</a></button>
                                                                 </div>
                                                                 <form
                                                                     action="{{ route('admin.cities.destroy', $city->id) }}"
@@ -151,7 +151,7 @@
                                                                             src="{{ asset('assets/front/media/bin.png') }}"
                                                                             alt="">
                                                                         <button type="submit"
-                                                                            class="w-full font-medium text-left px-4  text-sm text-gray-800">Remove</button>
+                                                                            class="w-full font-medium text-left px-4  text-gray-800">Remove</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
@@ -166,7 +166,7 @@
                             </table>
                         </div>
                         <div class="flex justify-between items-center p-4 text-gray-600 text-sm">
-                            {{-- <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-2">
                                 <span>Show</span>
                                 <select data-datatable-size="true" name="perpage"
                                     class="w-16 px-2 py-1 border border-gray-300 rounded focus:ring focus:ring-indigo-500">
@@ -175,7 +175,7 @@
                                     <option value="20" {{ request()->perpage == 20 ? 'selected' : '' }}>20</option>
                                 </select>
                                 Per Page
-                            </div> --}}
+                            </div>
                             <div class="flex items-center gap-4">
                                 <span>Showing {{ $cities->firstItem() }} to {{ $cities->lastItem() }} of {{ $cities->total() }}
                                     cities</span>

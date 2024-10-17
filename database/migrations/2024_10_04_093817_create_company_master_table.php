@@ -26,9 +26,9 @@ return new class extends Migration
             $table->string('website')->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('city_id')->references('id')->on('city_master');
-            $table->foreign('state_id')->references('id')->on('state_master');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreign('city_id')->references('id')->on('city_master')->onDelete('cascade');
+            $table->foreign('state_id')->references('id')->on('state_master')->onDelete('cascade');;
         });
     }
 
